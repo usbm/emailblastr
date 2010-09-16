@@ -1,0 +1,25 @@
+<h1>Listing message_deliveries</h1>
+
+<table>
+  <tr>
+    <th>Message</th>
+    <th>Subscriber</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @message_deliveries.each do |message_delivery| %>
+  <tr>
+    <td><%= message_delivery.message_id %></td>
+    <td><%= message_delivery.subscriber_id %></td>
+    <td><%= link_to 'Show', message_delivery %></td>
+    <td><%= link_to 'Edit', edit_message_delivery_path(message_delivery) %></td>
+    <td><%= link_to 'Destroy', message_delivery, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Message delivery', new_message_delivery_path %>

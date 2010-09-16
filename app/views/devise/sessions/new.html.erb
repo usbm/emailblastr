@@ -1,0 +1,21 @@
+<%= content_block :title => "Sign in to EmailBlastr", :links => [link_to("Back to homepage", root_path)], :class => "small center login" do %>
+	<% if notice %>
+		<div class="message info"><p><%= notice %></p></div>
+	<% end %>
+	<% if alert %>
+	  <div class="message errormsg"><p><%= alert %></p></div>
+	<% end %>
+	
+	<%= simple_form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
+	  <%= f.input :login, :required => true %>
+		<%= f.input :password, :required => true %>
+
+	  <% if devise_mapping.rememberable? -%>
+	    <%= f.input :remember_me, :as => :boolean %>
+	  <% end -%>
+
+	  <%= f.submit "Sign in", :class => 'submit small' %>
+	<% end %>
+
+	<%= render :partial => "devise/shared/links" %>
+<% end %>

@@ -1,0 +1,28 @@
+<%= content_block :title => "#{@list.name} Subscriptions", :links => [link_to('New Subscriber', new_list_subscriber_path(@list)),link_to("Back to #{@list.name}",@list)] do %>
+
+<table style="width: 100%;">
+	<thead>
+		
+	  <tr>
+			<th>Subscriber</th>
+	    <th>Status</th>
+	    <th>Business name</th>
+	    <th></th>
+	    <th></th>
+	  </tr>
+	</thead>
+
+<% @subscribers.each do |subscriber| %>
+  <tr>
+    <td><%= link_to subscriber.email, [@list,subscriber] %> <%= "(#{subscriber.first_name} #{subscriber.last_name})" if (subscriber.first_name && !subscriber.first_name.blank?) || (subscriber.last_name && !subscriber.last_name.blank?) %></td>
+    <td><%= subscriber.status_text %></td>
+    <td><%= subscriber.business_name %></td>
+    <td class="delete"><%= link_to 'Edit', edit_list_subscriber_path(@list,subscriber) %></td>
+    <td class="delete"><%= link_to 'Delete', [@list,subscriber], :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+
+<p><%= button_link_to 'New Subscriber', new_list_subscriber_path(@list), :class => 'long' %></p>
+<% end %>

@@ -1,0 +1,27 @@
+<%= content_block :title => "My blast messages", :links => [link_to("New message",new_blast_message_path)] do%>
+
+<table>
+	<thead>
+	  <tr>
+	    <th>Name</th>
+			<th>Status</th>
+			<th>Lists</th>
+	    <th></th>
+	    <th></th>
+	  </tr>
+	</thead>
+	<tbody>
+		<% @blast_messages.each do |blast_message| %>
+		  <tr>
+		    <td><%= link_to blast_message.name, blast_message %></td>
+				<td><%= blast_message.status %></td>
+				<td><%= blast_message.lists.collect{|l| link_to(l.name,l) }.join(', ').html_safe %></td>
+		    <td><%= link_to 'Edit', edit_blast_message_path(blast_message) %></td>
+		    <td><%= link_to 'Destroy', blast_message, :confirm => 'Are you sure?', :method => :delete %></td>
+		  </tr>
+		<% end %>
+	</tbody>
+</table>
+
+<p><%= button_link_to 'New Blast message', new_blast_message_path, :class => 'long' %></p>
+<% end %>

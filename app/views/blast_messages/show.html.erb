@@ -1,0 +1,36 @@
+<%= content_block :title => @blast_message.name, :links => [link_to('Edit message', edit_blast_message_path(@blast_message)), link_to("Back to messages",blast_messages_path)] do %>
+
+	<p>
+	  <b>From:</b>
+	  <%= @blast_message.from_name %> <<%= @blast_message.reply_to.email %>>
+	</p>
+
+	<p>
+	  <b>Subject:</b>
+	  <%= @blast_message.subject %>
+	</p>
+	
+	<p>
+		<b>Status:</b>
+		<%= @blast_message.status %>
+	</p>
+	
+	<h3>Lists</h3>
+	<% if @blast_message.lists.blank? %>
+		<p>None assigned yet</p>
+	<% else %>
+		<ul>
+		<% @blast_message.lists.each do |list| %>
+			<li><%= link_to list.name, list %></li>
+		<% end %>
+		</ul>
+	<% end %>
+
+	<h3>Plain-text message</h3>
+	<%= simple_format @blast_message.plain_text_message %>
+
+
+
+<%= link_to('Edit', edit_blast_message_path(@blast_message)) %> |
+<%= link_to 'Back', blast_messages_path %>
+<% end %>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title><%= yield :title %></title>
+  <%= stylesheet_link_tag 'style','jquery.wysiwyg','facebox','visualize','date_input','application', :cache => true %>
+
+	<!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=7" /><![endif]-->
+	<!--[if lt IE 8]><style type="text/css" media="all">@import url("/stylesheets/ie.css");</style><![endif]-->
+	<!--[if IE]><script type="text/javascript" src="/javascripts/excanvas.js"></script><![endif]-->
+
+  <%= javascript_include_tag :all, :cache => true %>
+  <%= csrf_meta_tag %>
+</head>
+<body>
+	<div id="hld">
+	
+		<div class="wrapper">		<!-- wrapper begins -->
+			<%= render 'shared/header' %>
+			
+			<% if notice %>
+				<div class="message info"><p><%= notice %></p></div>
+			<% end %>
+			<% if alert %>
+			  <div class="message errormsg"><p><%= alert %></p></div>
+			<% end %>
+
+			<%= yield %>
+			
+			<%= render 'shared/footer' %>
+		</div>						<!-- wrapper ends -->
+		
+	</div>		<!-- #hld ends -->
+</body>
+</html>

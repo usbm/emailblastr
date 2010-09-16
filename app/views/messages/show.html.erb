@@ -1,0 +1,55 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @message.name %>
+</p>
+
+<p>
+  <b>Subject:</b>
+  <%= @message.subject %>
+</p>
+
+<p>
+  <b>Html message:</b>
+  <%= @message.html_message %>
+</p>
+
+<p>
+  <b>Plain text message:</b>
+  <%= @message.plain_text_message %>
+</p>
+
+<p>
+  <b>Delivered at:</b>
+  <%= @message.delivered_at %>
+</p>
+
+<p>
+  <b>Delivered:</b>
+  <%= @message.delivered %>
+</p>
+
+<p>
+  <b>Type:</b>
+  <%= @message.type %>
+</p>
+
+<p>
+  <b>List:</b>
+  <%= @message.list_id %>
+</p>
+
+<p>
+  <b>From name:</b>
+  <%= @message.from_name %>
+</p>
+
+<p>
+  <b>Reply to:</b>
+  <%= @message.reply_to_id %>
+</p>
+
+
+<%= link_to 'Edit', edit_message_path(@message) %> |
+<%= link_to 'Back', messages_path %>

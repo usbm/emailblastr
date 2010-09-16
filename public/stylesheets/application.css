@@ -1,0 +1,22 @@
+div.input, div.actions {
+	margin-bottom: 10px;
+}
+
+div.input label {
+	display: block;
+}
+
+div.input label.boolean, div.input label.collection_check_boxes {
+	display: inline;
+}
+div.input label.collection_check_boxes {
+	padding-left: .3em;
+}
+
+div.input.left {
+	float: left; padding-right: 10px;
+}
+
+.block form select {
+	font-size: 13px; line-height: 18px;
+}

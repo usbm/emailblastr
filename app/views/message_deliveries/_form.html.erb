@@ -1,0 +1,22 @@
+<%= simple_form_for(@message_delivery) do |f| %>
+  <% if @message_delivery.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@message_delivery.errors.count, "error") %> prohibited this message_delivery from being saved:</h2>
+
+      <ul>
+      <% @message_delivery.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="inputs">
+    <%= f.input :message_id %>
+    <%= f.input :subscriber_id %>
+  </div>
+
+  <div class="actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

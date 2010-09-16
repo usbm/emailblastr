@@ -1,0 +1,26 @@
+<%= simple_form_for([@list,@autoresponder]) do |f| %>
+  <% if @autoresponder.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@autoresponder.errors.count, "error") %> prohibited this autoresponder from being saved:</h2>
+
+      <ul>
+      <% @autoresponder.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="inputs">
+    <%= f.input :name, :label => "Message name", :hint => "Will only be visible to you" %>
+		<%= f.input :from_name, :label => "Sender's name", :wrapper_html => { :class => 'left'}, :input_html => {:class => 'small'} %>
+    <%= f.association :reply_to, :label => "Reply-to address" %>
+    <%= f.input :subject, :wrapper_html => { :style => 'clear: left;'} %>
+    <%= f.input :html_message, :input_html => {:class => 'wysiwyg'} %>
+    <%= f.input :plain_text_message %>
+  </div>
+
+  <div class="actions">
+    <%= f.button :submit, :class => 'submit long' %>
+  </div>
+<% end %>

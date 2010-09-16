@@ -1,0 +1,20 @@
+<%= content_block :title => "Autoresponders", :links => [link_to("New autoresponder",new_list_autoresponder_path(@list)),link_to("Back to #{@list.name}",@list)] do %>
+
+<table>
+  <tr>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @autoresponders.each do |autoresponder| %>
+  <tr>
+    <td><%= link_to autoresponder.name, [@list,autoresponder] %></td>
+    <td><%= link_to 'Edit', edit_list_autoresponder_path(@list,autoresponder) %></td>
+    <td><%= link_to 'Delete', [@list,autoresponder], :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<p><%= button_link_to 'New Autoresponder', new_list_autoresponder_path(@list), :class => 'long' %></p>
+<% end %>

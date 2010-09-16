@@ -1,0 +1,33 @@
+<%= content_block :title => "Manage your lists", :links => [link_to('New List', new_list_path)] do %>
+
+<table style="width: 100%;">
+	<thead>
+  	<tr>
+	    <th>Name</th>
+	    <th>Subscribers</th>
+			<th>Blast messages</th>
+			<th>Autoresponders</th>
+	    <th>From email slug</th>
+	    <th>Date created</th>
+	    <th></th>
+	  </tr>
+	</thead>
+	<tbody>
+	<% @lists.each do |list| %>
+	  <tr class="<%= cycle 'even','odd' %>">
+	    <td><%= link_to list.name, list %></td>
+	    <td><%= link_to list.subscribers.count, list_subscribers_path(list) %></td>
+			<td><%= list.blast_messages.count %></td>
+			<td><%= link_to list.autoresponders.count, list_autoresponders_path(list) %></td>
+	    <td><%= list.from_email_slug %></td>
+	    <td><%= list.created_at %></td>
+	    <td class="delete"><%= link_to 'Delete', list, :confirm => 'Are you sure?', :method => :delete %></td>
+	  </tr>
+	<% end %>
+	</tbody>
+</table>
+
+<p>
+	<%= button_to 'New List', new_list_path, :class => 'submit small', :method => :get %>
+</p>
+<% end %>

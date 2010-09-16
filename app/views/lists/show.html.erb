@@ -1,0 +1,85 @@
+<%= content_block :title => @list.name, :links => [link_to('Edit list details', edit_list_path(@list))] do %>
+<h3>Description</h3>
+<%= simple_format @list.description %>
+<h3>Confirmation text</h3>
+<%= simple_format @list.confirmation_text %>
+
+<p>
+  <b>From email slug:</b>
+  <%= @list.from_email_slug %>
+</p>
+
+<p><%= button_link_to 'Edit', edit_list_path(@list) %></p>
+
+<% end %>
+
+<%= content_block :title => "Subscribers", :class => "small left", :links => [link_to('New Subscriber', new_list_subscriber_path(@list)),link_to("View all",list_subscribers_path(@list))] do %>
+	<table style="width: 100%;">
+		<thead>
+
+		  <tr>
+				<th>Subscriber</th>
+		    <th>Status</th>
+		    <th></th>
+		    <th></th>
+		  </tr>
+		</thead>
+
+	<% @list.subscribers.limit(10).order('created_at desc').each do |subscriber| %>
+	  <tr class="<%= cycle 'even','odd' %>">
+	    <td><%= link_to subscriber.email, [@list,subscriber] %> <%= "(#{subscriber.first_name} #{subscriber.last_name})" if (subscriber.first_name && !subscriber.first_name.blank?) || (subscriber.last_name && !subscriber.last_name.blank?) %></td>
+	    <td><%= subscriber.status_text %></td>
+	    <td class="delete"><%= link_to 'Edit', edit_list_subscriber_path(@list,subscriber) %></td>
+	    <td class="delete"><%= link_to 'Delete', [@list,subscriber], :confirm => 'Are you sure?', :method => :delete %></td>
+	  </tr>
+	<% end %>
+	</table>
+
+
+	<p><%= link_to("View all",list_subscribers_path(@list)) %></p>
+<% end %>
+
+<%= content_block :title => "Blast Messages", :class => "small right", :links => [link_to('New Message', new_blast_message_path),link_to("View all",blast_messages_path(:list_id => @list.id))] do %>
+	<table style="width: 100%">
+		<thead>
+			<tr>
+				<th>Name</th>
+				<th>Status</th>
+				<th></th>
+				<th></th>
+			</tr>
+		</thead>
+		<tbody>
+			<% @list.blast_messages.order('created_at desc').limit(5).each do |message| %>
+				<tr class="<%= cycle 'even','odd' %>">
+					<td><%= link_to message.name, message %></td>
+					<td><%= message.status %></td>
+					<td class="delete"><%= link_to 'Edit', edit_blast_message_path(message) %></td>
+					<td class="delete"><%= link_to 'Delete', message, :method => :delete, :confirm => 'Are you sure?' %>
+				</tr>
+			<% end %>
+		</tbody>
+	</table>
+	<p><%= link_to("View all",blast_messages_path(:list_id => @list.id)) %></p>
+<% end %>
+
+<%= content_block :title => "Autoresponders", :class => 'small right', :links => [link_to("New autoresponder",new_list_autoresponder_path(@list)), link_to("View all", list_autoresponders_path(@list))] do %>
+
+<table>
+  <tr>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @list.autoresponders.each do |autoresponder| %>
+  <tr>
+    <td><%= link_to autoresponder.name, [@list,autoresponder] %></td>
+    <td><%= link_to 'Edit', edit_list_autoresponder_path(@list,autoresponder) %></td>
+    <td><%= link_to 'Delete', [@list,autoresponder], :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<p><%= link_to "View all", list_autoresponders_path(@list) %></p>
+<% end %>

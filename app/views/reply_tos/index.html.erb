@@ -1,0 +1,24 @@
+<%= content_block :title => "My Reply-to Addresses", :links => [link_to("New address",new_reply_to_path)] do %>
+
+<table>
+  <tr>
+    <th>Email</th>
+    <th>Confirmed</th>
+    <th>Active</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @reply_tos.each do |reply_to| %>
+  <tr>
+    <td><%= reply_to.email %></td>
+    <td><%= reply_to.confirmed ? "Confirmed" : "Awaiting Confirmation" %></td>
+    <td class="delete"><%= link_to 'Edit', edit_reply_to_path(reply_to) %></td>
+    <td class="delete"><%= link_to 'Destroy', reply_to, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<p><%= button_link_to 'New Address', new_reply_to_path, :class => 'mid' %></p>
+<% end %>

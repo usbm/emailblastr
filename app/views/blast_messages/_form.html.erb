@@ -1,0 +1,27 @@
+<%= simple_form_for(@blast_message) do |f| %>
+  <% if @blast_message.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@blast_message.errors.count, "error") %> prohibited this blast_message from being saved:</h2>
+
+      <ul>
+      <% @blast_message.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="inputs">
+    <%= f.input :name %>
+    <%= f.input :subject %>
+    <%= f.input :html_message, :input_html => {:class => 'wysiwyg'} %>
+    <%= f.input :plain_text_message %>
+    <%= f.association :lists, :as => :check_boxes %>
+    <%= f.input :from_name %>
+    <%= f.association :reply_to %>
+  </div>
+
+  <div class="actions">
+    <%= f.button :submit, :class => 'submit long' %>
+  </div>
+<% end %>

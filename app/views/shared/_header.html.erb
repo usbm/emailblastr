@@ -1,0 +1,16 @@
+<div id="header">
+	<div class="hdrl"></div>
+	<div class="hdrr"></div>
+	
+	<%= link_to image_tag('/images/logo.png', :style => 'float: left; margin-right: 100px; margin-top: 12px;'), root_path %>
+	
+	<%= render_navigation :expand_all => true %>
+	
+	<p class="user">
+		<% if current_user %>
+			Hello, <%= link_to current_user.login, edit_user_registration_path %> | <%= link_to "Log out", destroy_user_session_path %>
+		<% else %>
+			<%= link_to "Sign up", new_user_registration_path %> | <%= link_to "Log in", new_user_session_path %>
+		<% end %>
+	</p>
+</div>		<!-- #header ends -->

@@ -1,0 +1,23 @@
+<%= simple_form_for(@reply_to) do |f| %>
+  <% if @reply_to.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@reply_to.errors.count, "error") %> prohibited this reply_to from being saved:</h2>
+
+      <ul>
+      <% @reply_to.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="inputs">
+    <%= f.input :email %>
+    <%= f.input :confirmed %>
+    <%= f.input :active %>
+  </div>
+
+  <div class="actions">
+    <%= f.button :submit, :class => 'submit long' %>
+  </div>
+<% end %>

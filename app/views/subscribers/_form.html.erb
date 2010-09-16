@@ -1,0 +1,34 @@
+<%= simple_form_for([@list,@subscriber]) do |f| %>
+  <% if @subscriber.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@subscriber.errors.count, "error") %> prohibited this subscriber from being saved:</h2>
+
+      <ul>
+      <% @subscriber.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="inputs">
+		<%= f.input :email %>
+    <%= f.input :first_name, :wrapper_html => { :class => 'left'}, :input_html => {:class => 'small'} %>
+    <%= f.input :last_name, :input_html => {:class => 'small'} %>
+    <%= f.input :business_name %>
+    <%= f.input :street1 %>
+    <%= f.input :street2 %>
+    <%= f.input :city, :wrapper_html => { :class => 'left'}, :input_html => {:class => 'small'} %>
+		<div class="input select optional left">
+			<%= f.label :state %>
+			<%= f.select :state, Carmen::states('US'), {:prompt => true}, :style => 'width: 90px;', :class => 'styled' %>
+		</div>
+    <%= f.input :zip, :input_html => {:style => 'width: 50px'} %>
+    <%= f.input :phone %>
+    <%= f.input :fax %>
+  </div>
+
+  <div class="actions">
+    <%= f.button :submit, :class => 'submit long' %>
+  </div>
+<% end %>
