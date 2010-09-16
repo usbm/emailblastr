@@ -15,8 +15,17 @@ test:
   pool: 5
   timeout: 5000
 
+staging:
+  adapter: mysql
+  database: emailblastr_staging
+  username: emailblastr
+  password: pass69
+  timeout: 5000
+
+
 production:
-  adapter: sqlite3
-  database: db/production.sqlite3
-  pool: 5
+  adapter: mysql
+  database: emailblastr
+  username: emailblastr
+  password: pass69
   timeout: 5000
